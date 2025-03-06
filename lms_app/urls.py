@@ -4,8 +4,7 @@ from .views import (
     category_list_create, category_detail,
     book_list_create, book_detail,
     author_list_create, author_detail,
-    barrow_list_create, barrow_detail,
-    reservation_list_create, reservation_detail,search_lms,
+       search_lms,book_status,book_borrow,book_reserve,book_return
 )
 
 urlpatterns = [
@@ -15,17 +14,15 @@ urlpatterns = [
     path('category/', category_list_create, name='category-list-create'),
     path('category/<int:id>/', category_detail, name='category-detail'),
 
-    path('book/', book_list_create, name='book-list-create'),
-    path('book/<int:id>/', book_detail, name='book-detail'),
+    path('books/', book_list_create, name='book-list-create'),
+    path('books/<int:id>/', book_detail, name='book-detail'),
+    path('book-status/<int:book_id>/', book_status, name='book-status'),
+    path('borrow/', book_borrow, name='book-borrow'),
+    path('reserve/', book_reserve, name='book-reserve'),
+    path('return/', book_return, name='book-return'),
 
     path('author/', author_list_create, name='author-list-create'),
     path('author/<int:id>/', author_detail, name='author-detail'),
-
-    path('barrow/', barrow_list_create, name='barrow-list-create'),
-    path('barrow/<int:id>/', barrow_detail, name='barrow-detail'),
-
-    path('reservation/', reservation_list_create, name='reservation-list-create'),
-    path('reservation/<int:id>/', reservation_detail, name='reservation-detail'),
-
     path('search/', search_lms, name='search_lms_create'),
 ]
+
