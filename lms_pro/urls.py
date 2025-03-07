@@ -24,9 +24,10 @@ def api_root(request):
         "category": "/api/category/",
         "book": "/api/books/",
         "author": "/api/authors/",
-        "reservation": "/api/reservation/",
-        "barrow": "/api/barrow/",
         "search": "/api/search/",
+        "borrow": "/api/borrow/",
+        "reserve": "/api/reserve/",
+        "return": "/api/return",
     })
 
 urlpatterns = [
