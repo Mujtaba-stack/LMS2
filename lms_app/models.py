@@ -13,6 +13,14 @@ class DateTimeMixin(models.Model):
         abstract=True
 
 class Category(DateTimeMixin):
+class DateTimeMixin(models.Model):
+    created = models.DateTimeField(default=timezone.now) 
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract=True
+
+class Category(DateTimeMixin):
     category_name = models.CharField(max_length=220, default="Fiction" , choices=[('Fiction','Fiction'),('Non-Fiction','Non-Fiction'),('Sci-Fic','Sci-Fic')])
     def __str__(self):
         return self.category_name
@@ -68,7 +76,10 @@ class Author(DateTimeMixin):
 
 
 class Member(DateTimeMixin):
+
+class Member(DateTimeMixin):
     member_full_name = models.CharField(max_length=220)
+    member_email = models.CharField(max_length=220)
     member_email = models.CharField(max_length=220)
     member_department = models.CharField(max_length=220)
     member_city = models.CharField(max_length=220)

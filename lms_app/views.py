@@ -9,6 +9,7 @@ from .models import Member, Category, Book, Author,Billing
 from .serializers import (
     MemberSerializer, CategorySerializer, BookSerializer, 
     AuthorSerializer
+    AuthorSerializer
 )
 
 @api_view(['GET', 'POST'])
@@ -105,6 +106,10 @@ def book_list_create(request):
 def book_detail(request):
     if request.method == 'PATCH':
         serializer = BookSerializer(data=request.data)
+@api_view(['PATCH'])
+def book_detail(request):
+    if request.method == 'PATCH':
+        serializer = BookSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -196,6 +201,7 @@ def author_list_create(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+
 @api_view(['GET', 'PATCH', 'DELETE'])
 def author_detail(request, id):
     author = get_object_or_404(Author, id=id)
@@ -212,10 +218,13 @@ def author_detail(request, id):
         author.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
+    
 
 @api_view(['GET'])
 def search_lms(request):
     query = request.GET.get('query', '')
+    books = Book.objects.filter(Q(book_title__icontains=query))
+    members = Member.objects.filter(Q(member_full_name__icontains=query) |Q(member_Email__icontains=query) |Q(member_department__icontains=query) |Q(member_city__icontains=query) |Q(member_age__icontains=query))
     books = Book.objects.filter(Q(book_title__icontains=query))
     members = Member.objects.filter(Q(member_full_name__icontains=query) |Q(member_Email__icontains=query) |Q(member_department__icontains=query) |Q(member_city__icontains=query) |Q(member_age__icontains=query))
     categories = Category.objects.filter(Q(category_name__icontains=query))
