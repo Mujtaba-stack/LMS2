@@ -13,7 +13,7 @@ class DateTimeMixin(models.Model):
         abstract=True
 
 class Category(DateTimeMixin):
-class DateTimeMixin(models.Model):
+
     created = models.DateTimeField(default=timezone.now) 
     updated = models.DateTimeField(auto_now=True)
 
@@ -75,7 +75,6 @@ class Author(DateTimeMixin):
         return self.author_name
 
 
-class Member(DateTimeMixin):
 
 class Member(DateTimeMixin):
     member_full_name = models.CharField(max_length=220)

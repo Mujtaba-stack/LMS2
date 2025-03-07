@@ -9,7 +9,7 @@ from .models import Member, Category, Book, Author,Billing
 from .serializers import (
     MemberSerializer, CategorySerializer, BookSerializer, 
     AuthorSerializer
-    AuthorSerializer
+
 )
 
 @api_view(['GET', 'POST'])
@@ -103,7 +103,7 @@ def book_list_create(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    
+
 @api_view(['PATCH'])
 def book_detail(request):
     if request.method == 'PATCH':
