@@ -102,6 +102,8 @@ def book_list_create(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
 @api_view(['PATCH'])
 def book_detail(request):
     if request.method == 'PATCH':
